@@ -19,17 +19,18 @@ Create superuser:
     `python manage.py createsuperuser`  
 
 Also you need to add custom Django command in cron  
-(here assumed that you are using a virtualenv):  
+(This following example assume that you are using a virtualenv):  
 
-Ubuntu  
+###### Ubuntu  
     in console `crontab -e`  
     Then add this command in the file:  
-    `*/5 * * * * /path/to/virtualenv /path/to/project/manage.py checking_by_cron`
+    `*/5 * * * * /path/to/virtualenv/bin/python /path/to/project/manage.py checking_by_cron`
 
-In CentOS, maybe, you need to do something like this:  
+###### In CentOS,
+maybe, you need to do something like this:  
     in console `vim /etc/crontab`  
     Then add this command in the file:  
-    `*/5 * * * * root /path/to/virtualenv /path/to/project/manage.py checking_by_cron`  
+    `*/5 * * * * root /path/to/virtualenv/bin/python /path/to/project/manage.py checking_by_cron`  
 Where `checking_by_cron` is custom Django command.
 
 Then in the Django admin panel you need to add cPanel`s domains and log/pass for each of them.
