@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load cron_table %}
+
+{% block js %}
+    <script>
+        function gen_table (resp) {
+          var table='<table class="table table-hover">\
+                      <tr>\
+                        <th>Servers</th>\
+                        <th>Accounts</th>\
+                      </tr>';
+            for (var i = 0; i <= resp['server_list'].length - 1; i++) {
+              var line='';
+              line ='<tr>'+'<td>'+resp['server_list'][i][0]+'</td>'+'<td>'+resp['server_list'][i][1]+'</td>'+'</tr>';
+              table=table+line;
+            };
+          table=table+'</table>';
+          return table;
+        };
+        $(document).ready(function(){
+            $("#btn_run").click(function(event){
+              $.ajax({
+                type: 'POST',
+                url: "{%url 'servers'%}",
+                data:{'btn_run':'ok'},
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#result').html("<h1> Please wait </h1>");
+                },
+                success: function(response){
+                  $('#result').html(gen_table (response));
+                  }
+              });
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <br>
+    <br>
+    <div align="center">
+        <button type="button" class="btn btn-primary" id="btn_run">Run</button>
+        <br>
+        <br>
+        <div  align="center" id ="result"></div>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <div align="center">{% cron_table %}</div>
+    <br>
+    <br>
+{% endblock %}

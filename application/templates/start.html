@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <br>
+        <div align="center">
+            <h3 style="padding-top:80px ">
+                You logged in as {{ user.username }} <br><br>
+                <a href="{% url 'servers' %}">page of starting the program</a>
+            </h3>
+        </div>
+    {% else %}
+        <div align="center">
+        <br>
+        <br>
+        <h1>Sign In</h1>
+
+        <div class="pad_center" >
+            <h4> {{error_start}} </h4>
+
+            {% if form.errors %}
+                <p style="color: red;">
+                    Please correct errors
+                </p>
+            {% endif %}
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <div style="padding-right:80px">
+                    <table>
+                        <tr>
+                            <th>{{ form.username.label}}</th>
+                            <td>
+                                {{ form.username }} 
+                                {{ form.username.errors}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{ form.password.label}}</th>
+                            <td>
+                                {{ form.password }}
+                                {{ form.password.errors}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+                <div class="btn_position" > <input type="submit"  class="btn btn-primary" value="Login"></div>
+            </form>
+
+        </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+

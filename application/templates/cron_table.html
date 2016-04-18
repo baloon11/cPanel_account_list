@@ -1,0 +1,17 @@
+Time of last update data by cron 
+<br>
+{{ cron_time }}
+<br>
+<br>
+<table class="table table-hover">
+    <tr>
+        <th>Servers</th>
+        <th>Accounts</th>
+    </tr>
+    {% for server in servers %}
+        <tr>
+            <td>{{ server.name }}</td>
+            <td>{{ server.checking_by_cron }}</td>
+        </tr>
+    {% endfor %}
+</table>
