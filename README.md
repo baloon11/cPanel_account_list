@@ -44,5 +44,5 @@ Then in the Django admin panel you need to add cPanel`s domains and log/pass for
 
 #### Note
 If you want to use this functionality as console script  
-you can use this repository:  
-`https://github.com/baloon11/cPanel-API-python-script-Getting-info-about-accounts`
+you can use this
+[repository](https://github.com/baloon11/cPanel-API-python-script-Getting-info-about-accounts)
