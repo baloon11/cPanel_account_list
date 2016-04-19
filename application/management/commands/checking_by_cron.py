@@ -22,8 +22,10 @@ class Command(NoArgsCommand):
                     curr_server.checking_by_cron=str(len(account_list))
                     curr_server.save()
                     time.sleep(2)
-
-        CronTime.objects.get(id=1).save()
+        try:
+            CronTime.objects.get(id=1).save()
+        except CronTime.DoesNotExist:
+            CronTime.objects.create()
 
 
 
